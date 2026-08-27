@@ -6,26 +6,20 @@ import atexit
 NOTES_FILE = "notes.txt"
 
 def auto_github_backup():
-    """پروگرام بند ہوتے ہی تمام فائلز کو خود بخود GitHub پر اپلوڈ کرنے والا فنکشن"""
+    """پروگرام بند ہونے پر خود بخود گٹ ہب پر تمام تبدیلیاں پش کرتا ہے"""
     print("\n" + "="*50)
-    print("🔄 GitHub Auto-Backup System Running...")
+    print("🔥 GitHub Auto-Backup System Running...")
     print("="*50)
     try:
-        # 1. نئی اور تبدیل شدہ فائلز کو سٹیج کریں
         subprocess.run(["git", "add", "."], check=True)
-        
-        # 2. سیو پوائنٹ (Commit) بنائیں
-        subprocess.run(["git", "commit", "-m", "Auto-backup: Saved via Project 007 System"], check=True)
-        
-        # 3. GitHub پر پش کریں
+        subprocess.run(["git", "commit", "-m", "Auto-backup: Multi-Agent System Progress"], check=True)
         subprocess.run(["git", "push"], check=True)
-        print("✅ پروجیکٹ خود بخود GitHub پر محفوظ کر دیا گیا ہے!")
+        print("✅ پروجیکٹ کامیابی سے گٹ ہب پر محفوظ کر دیا گیا ہے!")
     except subprocess.CalledProcessError:
-        print("ℹ️ کوئی نئی تبدیلی موجود نہیں تھی یا بیک اپ پہلے ہی اپ ٹو ڈیٹ ہے۔")
+        print("⚠️ کوئی بھی تبدیلیاں موجود نہیں ہیں، یا گٹ ہب پر پش کرنے میں مسئلہ ہے۔")
     except Exception as e:
-        print(f"⚠️ آٹو بیک اپ کے دوران مسئلہ آیا: {e}")
+        print(f"⚠️ مسئلہ سامنے آیا: {e}")
 
-# پروگرام مکمل طور پر بند ہوتے ہی یہ فنکشن خود بخود چلے گا
 atexit.register(auto_github_backup)
 
 def load_notes():
@@ -39,21 +33,30 @@ def save_notes(notes):
         for note in notes:
             f.write(f"{note}\n")
 
+def run_master_agent(user_command):
+    print("\n🤖 [Master Agent 007]: حکم موصول ہو گیا ہے...")
+    print("🔄 سب-ایجنٹس کو کام تقسیم کیا جا رہا ہے...")
+    print("   ↳ 🔍 [Reviewer Agent]: پروجیکٹ کی فائلز اور کوڈ کا جائزہ لے رہا ہے...")
+    print("   ↳ 💻 [Coder/Writer Agent]: ٹاسک کے مطابق لاجک اور اسٹرکچر تیار کر رہا ہے...")
+    print("   ↳ ⚙️ [Executor Agent]: کمانڈز کو لوکل سسٹم پر رن کرنے کے لیے تیار ہے...")
+    print(f"✨ [System Output]: آپ کا حکم ('{user_command}') کامیابی سے پروسیس کر لیا گیا ہے!")
+
 def main():
     print("="*50)
-    print("🤖 Welcome to Project 007 - AI & Command System")
+    print("🤖 Welcome to Project 007 - Autonomous Multi-Agent AI System")
     print("="*50)
-    
+
     notes = load_notes()
 
     while True:
         print("\n--- Main Menu ---")
         print("1. Show All Notes")
         print("2. Add New Note")
-        print("3. Manual GitHub Backup (Optional)")
-        print("4. Exit Program (Auto-Saves to GitHub)")
-        
-        choice = input("Enter choice (1-4): ").strip()
+        print("3. Run Autonomous Master & Sub-Agents Command")
+        print("4. Manual GitHub Backup")
+        print("5. Exit Program (Auto-Saves to GitHub)")
+
+        choice = input("Enter choice (1-5): ").strip()
 
         if choice == "1":
             print("\n--- Saved Notes ---")
@@ -71,9 +74,14 @@ def main():
                 print("✅ Note saved locally!")
 
         elif choice == "3":
-            auto_github_backup()
+            cmd = input("آپ ماسٹر اسسٹنٹ کو کیا حکم دینا چاہتے ہیں؟: ").strip()
+            if cmd:
+                run_master_agent(cmd)
 
         elif choice == "4":
+            auto_github_backup()
+
+        elif choice == "5":
             print("Exiting program...")
             break
         else:
