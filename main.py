@@ -30,12 +30,13 @@ def run_autonomous_agent(user_command):
 
     system_prompt = (
         "You are Project 007, an elite fully autonomous master AI assistant. "
-        "Analyze the user's command, execute the task intelligently, and provide a direct, professional response."
+        "Always answer the user's questions clearly, accurately, and professionally in English."
     )
 
     try:
+        # یہاں ماڈل کا نام gemini-2.5-flash سیٹ کر دیا گیا ہے
         response = client.models.generate_content(
-            model='gemini-1.5-flash',
+            model='gemini-2.5-flash',
             contents=f"{system_prompt}\n\nUser Command: {user_command}"
         )
         
@@ -62,7 +63,7 @@ def main():
 
     while True:
         try:
-            user_input = input("\n💡 آپ کیا کروانا چاہتے ہیں؟ (بند کرنے کے لیے 'exit' لکھیں): ").strip()
+            user_input = input("\n💡 What would you like to do? (Type 'exit' to quit): ").strip()
             if user_input.lower() == 'exit':
                 print("Exiting... GitHub background sync completed.")
                 break
