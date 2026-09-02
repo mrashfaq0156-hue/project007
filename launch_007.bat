@@ -1,6 +1,9 @@
 @echo off 
-TITLE Project 007 - Browser UI 
-cd /d "C:\Users\ASHFAQ AHMAD\project007" 
-start python main.py 
-timeout /t 3 
-start chrome http://localhost:5000 
+TITLE Project 007 - Master Agent 
+color 0A 
+cls 
+echo ========================================== 
+echo    PROJECT 007 - MASTER AGENT INITIALIZED  
+echo ========================================== 
+python main.py 
+pause 
