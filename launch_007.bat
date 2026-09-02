@@ -1,9 +1,4 @@
 @echo off 
-TITLE Project 007 - Master Agent 
-color 0A 
-cls 
-echo ========================================== 
-echo    PROJECT 007 - MASTER AGENT INITIALIZED  
-echo ========================================== 
-python main.py 
-pause 
+TITLE Project 007 - Browser UI Master Agent 
+cd /d "C:\Users\ASHFAQ AHMAD\project007" 
+start streamlit run main.py 
